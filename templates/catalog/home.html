@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная - Магазин товаров{% endblock %}
+
+{% block content %}
+<!-- Герой секция -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">Добро пожаловать в наш магазин</h1>
+                <p class="lead">Лучшие товары по доступным ценам</p>
+                <a href="#" class="btn btn-light btn-lg">Перейти к покупкам</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://via.placeholder.com/500x300" alt="Главное изображение" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Карточки товаров -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Наши популярные товары</h2>
+        <div class="row g-4">
+            <!-- Товар 1 -->
+            <div class="col-md-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-header text-center py-4">
+                        <h4 class="my-0 fw-normal">Товар 1</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">$100</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>10 пользователей</li>
+                            <li>2 GB хранилища</li>
+                            <li>Email поддержка</li>
+                            <li>Доступ в центр помощи</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Товар 2 -->
+            <div class="col-md-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-header text-center py-4">
+                        <h4 class="my-0 fw-normal">Товар 2</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">$100</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>10 пользователей</li>
+                            <li>2 GB хранилища</li>
+                            <li>Email поддержка</li>
+                            <li>Доступ в центр помощи</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Товар 3 -->
+            <div class="col-md-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-header text-center py-4">
+                        <h4 class="my-0 fw-normal">Товар 3</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title pricing-card-title">$100</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>10 пользователей</li>
+                            <li>2 GB хранилища</li>
+                            <li>Email поддержка</li>
+                            <li>Доступ в центр помощи</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

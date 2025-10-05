@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты - Магазин товаров{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mb-4">Контакты</h1>
+            
+            <h2 class="h4 mb-3">Наши контакты</h2>
+            <p class="mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p class="mb-4">
+                While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript.
+            </p>
+
+            <hr class="my-5">
+
+            <h3 class="mb-4">Правила</h3>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="categoryCheck">
+                <label class="form-check-label" for="categoryCheck">
+                    Категории
+                </label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="ordersCheck">
+                <label class="form-check-label" for="ordersCheck">
+                    Заказы
+                </label>
+            </div>
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="contactsCheck">
+                <label class="form-check-label" for="contactsCheck">
+                    Контакты
+                </label>
+            </div>
+
+            <hr class="my-5">
+
+            <div class="d-flex gap-3 flex-wrap">
+                <button class="btn btn-outline-primary">График</button>
+                <button class="btn btn-outline-secondary">Выход</button>
+                <span class="btn btn-light">Пользователь</span>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="contact-info">
+                <h3 class="h5 mb-3">Контактная информация</h3>
+                <div class="mb-3">
+                    <strong>Адрес:</strong><br>
+                    г. Москва, ул. Примерная, д. 123
+                </div>
+                <div class="mb-3">
+                    <strong>Телефон:</strong><br>
+                    +7 (495) 123-45-67
+                </div>
+                <div class="mb-3">
+                    <strong>Email:</strong><br>
+                    info@example.com
+                </div>
+                <div class="mb-3">
+                    <strong>Режим работы:</strong><br>
+                    Пн-Пт: 9:00-18:00<br>
+                    Сб-Вс: 10:00-16:00
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
