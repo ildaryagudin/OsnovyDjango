@@ -1,0 +1,28 @@
+[
+{
+  "model": "catalog.product",
+  "pk": 1,
+  "fields": {
+    "name": "Смартфон Samsung",
+    "description": "Современный смартфон с большим экраном",
+    "image": "",
+    "category": 1,
+    "price": "23000.00",
+    "created_at": "2024-01-15T10:00:00Z",
+    "updated_at": "2024-01-15T10:00:00Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 2,
+  "fields": {
+    "name": "Ноутбук HP",
+    "description": "Мощный ноутбук для работы и игр",
+    "image": "",
+    "category": 1,
+    "price": "55000.00",
+    "created_at": "2024-01-15T10:00:00Z",
+    "updated_at": "2024-01-15T10:00:00Z"
+  }
+}
+]
