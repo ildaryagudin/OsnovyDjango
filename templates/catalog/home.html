@@ -11,7 +11,7 @@
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold">Добро пожаловать в наш магазин</h1>
                 <p class="lead">Лучшие товары по доступным ценам</p>
-                <a href="#" class="btn btn-light btn-lg">Перейти к покупкам</a>
+                <a href="#products" class="btn btn-light btn-lg">Перейти к покупкам</a>
             </div>
             <div class="col-lg-6">
                 <img src="https://via.placeholder.com/500x300" alt="Главное изображение" class="img-fluid rounded">
@@ -21,65 +21,51 @@
 </section>
 
 <!-- Карточки товаров -->
-<section class="py-5">
+<section id="products" class="py-5">
     <div class="container">
         <h2 class="text-center mb-5">Наши популярные товары</h2>
+
+        {% if products %}
         <div class="row g-4">
-            <!-- Товар 1 -->
+            {% for product in products %}
             <div class="col-md-4">
                 <div class="card pricing-card h-100">
-                    <div class="card-header text-center py-4">
-                        <h4 class="my-0 fw-normal">Товар 1</h4>
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="card-title pricing-card-title">$100</h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>10 пользователей</li>
-                            <li>2 GB хранилища</li>
-                            <li>Email поддержка</li>
-                            <li>Доступ в центр помощи</li>
-                        </ul>
-                        <button class="btn btn-primary w-100">Купить</button>
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Изображение отсутствует">
+                    {% endif %}
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.name }}</h5>
+
+                        {% if product.description %}
+                        <p class="card-text flex-grow-1">
+                            {{ product.description|truncatechars:100 }}
+                        </p>
+                        {% else %}
+                        <p class="card-text flex-grow-1 text-muted">Описание отсутствует</p>
+                        {% endif %}
+
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-primary">{{ product.price }} руб.</h4>
+                                <span class="badge bg-secondary">{{ product.category.name }}</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Товар 2 -->
-            <div class="col-md-4">
-                <div class="card pricing-card h-100">
-                    <div class="card-header text-center py-4">
-                        <h4 class="my-0 fw-normal">Товар 2</h4>
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="card-title pricing-card-title">$100</h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>10 пользователей</li>
-                            <li>2 GB хранилища</li>
-                            <li>Email поддержка</li>
-                            <li>Доступ в центр помощи</li>
-                        </ul>
-                        <button class="btn btn-primary w-100">Купить</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Товар 3 -->
-            <div class="col-md-4">
-                <div class="card pricing-card h-100">
-                    <div class="card-header text-center py-4">
-                        <h4 class="my-0 fw-normal">Товар 3</h4>
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="card-title pricing-card-title">$100</h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>10 пользователей</li>
-                            <li>2 GB хранилища</li>
-                            <li>Email поддержка</li>
-                            <li>Доступ в центр помощи</li>
-                        </ul>
-                        <button class="btn btn-primary w-100">Купить</button>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
+        {% else %}
+        <div class="text-center">
+            <p class="text-muted">Товары временно отсутствуют</p>
+        </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

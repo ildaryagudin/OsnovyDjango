@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} - Магазин товаров{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'catalog:home' %}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="#">{{ product.category.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/500x400" class="img-fluid rounded" alt="Изображение отсутствует">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h1 class="display-5">{{ product.name }}</h1>
+            <p class="lead">{{ product.price }} руб.</p>
+            
+            <div class="mb-4">
+                <h4>Описание</h4>
+                <p>{{ product.description }}</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>Категория</h4>
+                <p class="badge bg-primary">{{ product.category.name }}</p>
+            </div>
+
+            <div class="mb-4">
+                <h4>Информация о товаре</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Дата создания:</strong> {{ product.created_at|date:"d.m.Y H:i" }}</li>
+                    <li><strong>Последнее обновление:</strong> {{ product.updated_at|date:"d.m.Y H:i" }}</li>
+                </ul>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg">Добавить в корзину</button>
+                <a href="{% url 'catalog:home' %}" class="btn btn-outline-secondary">Назад к каталогу</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
