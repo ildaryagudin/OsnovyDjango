@@ -13,13 +13,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        📦 Каталог
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        📁 Категории
+                    <a class="nav-link {% if '/blog/' in request.path %}active{% endif %}" href="{% url 'blog:blogpost_list' %}">
+                        📝 Блог
                     </a>
                 </li>
                 <li class="nav-item">

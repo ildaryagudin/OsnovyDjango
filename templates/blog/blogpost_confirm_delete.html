@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Удаление "{{ object.title }}" - Блог{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'catalog:home' %}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'blog:blogpost_list' %}">Блог</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'blog:blogpost_detail' object.pk %}">{{ object.title }}</a></li>
+                    <li class="breadcrumb-item active">Удаление</li>
+                </ol>
+            </nav>
+
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="h5 mb-0">Подтверждение удаления</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Вы уверены, что хотите удалить статью "{{ object.title }}"?</p>
+                    <p class="text-muted">Это действие нельзя будет отменить.</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-danger">Да, удалить</button>
+                            <a href="{% url 'blog:blogpost_detail' object.pk %}" class="btn btn-outline-secondary">Отмена</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
