@@ -6,10 +6,15 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'catalog:home' %}">
                         🏠 Главная
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/products/' in request.path %}active{% endif %}" href="{% url 'catalog:product_list' %}">
+                        📦 Все продукты
                     </a>
                 </li>
                 <li class="nav-item">
@@ -23,6 +28,9 @@
                     </a>
                 </li>
             </ul>
+            <div class="navbar-nav">
+                <a href="{% url 'catalog:product_create' %}" class="btn btn-success btn-sm">+ Добавить продукт</a>
+            </div>
         </div>
     </div>
 </nav>
