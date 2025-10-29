@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
-from django.forms import inlineformset_factory
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Product, Category
 from .forms import ProductForm
 
@@ -28,16 +28,29 @@ class ContactsView(TemplateView):
     template_name = 'catalog/contacts.html'
 
 
-class ProductCreateView(CreateView):
-    """CBV для создания нового продукта"""
+class ProductListView(ListView):
+    """CBV для отображения списка всех продуктов (доступно всем)"""
+    model = Product
+    template_name = 'catalog/product_list.html'
+    context_object_name = 'products'
+    paginate_by = 9
+
+
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    """CBV для создания нового продукта (только для авторизованных)"""
     model = Product
     form_class = ProductForm
     template_name = 'catalog/product_form.html'
     success_url = reverse_lazy('catalog:product_list')
 
+    def form_valid(self, form):
+        """Привязываем продукт к текущему пользователю"""
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
-class ProductUpdateView(UpdateView):
-    """CBV для редактирования продукта"""
+
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
+    """CBV для редактирования продукта (только для авторизованных)"""
     model = Product
     form_class = ProductForm
     template_name = 'catalog/product_form.html'
@@ -47,16 +60,8 @@ class ProductUpdateView(UpdateView):
         return reverse_lazy('catalog:product_detail', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(DeleteView):
-    """CBV для удаления продукта"""
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    """CBV для удаления продукта (только для авторизованных)"""
     model = Product
     template_name = 'catalog/product_confirm_delete.html'
     success_url = reverse_lazy('catalog:product_list')
-
-
-class ProductListView(ListView):
-    """CBV для отображения списка всех продуктов"""
-    model = Product
-    template_name = 'catalog/product_list.html'
-    context_object_name = 'products'
-    paginate_by = 9  # Пагинация по 9 товаров на странице
