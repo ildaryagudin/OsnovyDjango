@@ -1,25 +1,5 @@
 from django.db import models
-
-
-class Category(models.Model):
-    """Модель категории товаров"""
-    name = models.CharField(
-        max_length=100,
-        verbose_name='Наименование'
-    )
-    description = models.TextField(
-        verbose_name='Описание',
-        blank=True,
-        null=True
-    )
-
-    class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
-        ordering = ['name']
-
-    def __str__(self):
-        return self.name
+from django.conf import settings
 
 
 class Product(models.Model):
@@ -57,6 +37,13 @@ class Product(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name='Дата последнего изменения'
+    )
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        verbose_name='Владелец',
+        blank=True,
+        null=True
     )
 
     class Meta:

@@ -29,7 +29,23 @@
                 </li>
             </ul>
             <div class="navbar-nav">
-                <a href="{% url 'catalog:product_create' %}" class="btn btn-success btn-sm">+ Добавить продукт</a>
+                {% if user.is_authenticated %}
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            👤 {{ user.email }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'catalog:product_create' %}">➕ Добавить продукт</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'users:logout' %}">🚪 Выйти</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="nav-item">
+                        <a href="{% url 'users:register' %}" class="btn btn-outline-light btn-sm me-2">Регистрация</a>
+                        <a href="{% url 'users:login' %}" class="btn btn-success btn-sm">Войти</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
