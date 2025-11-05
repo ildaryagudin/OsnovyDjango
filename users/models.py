@@ -3,7 +3,9 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """Кастомная модель пользователя"""
     username = None  # Убираем поле username
+
     email = models.EmailField(
         unique=True,
         verbose_name='Email'
@@ -33,7 +35,6 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
-        ordering = ['email']  # Исправляем ordering с username на email
 
     def __str__(self):
         return self.email

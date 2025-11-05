@@ -2,6 +2,27 @@ from django.db import models
 from django.conf import settings
 
 
+class Category(models.Model):
+    """Модель категории товаров"""
+    name = models.CharField(
+        max_length=100,
+        verbose_name='Наименование'
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        blank=True,
+        null=True
+    )
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     """Модель продукта"""
     name = models.CharField(
