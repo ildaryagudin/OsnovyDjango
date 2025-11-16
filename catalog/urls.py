@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     HomeView, ProductDetailView, ContactsView,
     ProductCreateView, ProductUpdateView, ProductDeleteView, ProductListView,
-    ModeratorProductListView, ChangeProductStatusView
+    CategoryProductsView, CategoryListView  # Новые импорты
 )
 
 app_name = 'catalog'
@@ -16,7 +16,7 @@ urlpatterns = [
     path('product/<int:pk>/update/', ProductUpdateView.as_view(), name='product_update'),
     path('product/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
 
-    # URLs для модераторов
-    path('moderator/products/', ModeratorProductListView.as_view(), name='moderator_product_list'),
-    path('moderator/product/<int:pk>/change-status/', ChangeProductStatusView.as_view(), name='change_product_status'),
+    # Новые URL для категорий
+    path('categories/', CategoryListView.as_view(), name='category_list'),
+    path('category/<slug:category_slug>/', CategoryProductsView.as_view(), name='category_products'),
 ]

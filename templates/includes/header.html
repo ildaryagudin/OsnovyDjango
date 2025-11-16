@@ -1,52 +1,27 @@
-<!-- Навигация -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'catalog:home' %}">🛍️ Магазин товаров</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'catalog:home' %}">
-                        🏠 Главная
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if '/products/' in request.path %}active{% endif %}" href="{% url 'catalog:product_list' %}">
-                        📦 Все продукты
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if '/blog/' in request.path %}active{% endif %}" href="{% url 'blog:blogpost_list' %}">
-                        📝 Блог
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/contacts/' %}active{% endif %}" href="{% url 'catalog:contacts' %}">
-                        📞 Контакты
-                    </a>
-                </li>
-            </ul>
-            <div class="navbar-nav">
-                {% if user.is_authenticated %}
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            👤 {{ user.email }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'catalog:product_create' %}">➕ Добавить продукт</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'users:logout' %}">🚪 Выйти</a></li>
-                        </ul>
-                    </div>
-                {% else %}
-                    <div class="nav-item">
-                        <a href="{% url 'users:register' %}" class="btn btn-outline-light btn-sm me-2">Регистрация</a>
-                        <a href="{% url 'users:login' %}" class="btn btn-success btn-sm">Войти</a>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</nav>
+<ul class="navbar-nav me-auto">
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'catalog:home' %}">
+            🏠 Главная
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if '/categories/' in request.path %}active{% endif %}" href="{% url 'catalog:category_list' %}">
+            📁 Категории
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if '/products/' in request.path %}active{% endif %}" href="{% url 'catalog:product_list' %}">
+            📦 Все продукты
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if '/blog/' in request.path %}active{% endif %}" href="{% url 'blog:blogpost_list' %}">
+            📝 Блог
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == '/contacts/' %}active{% endif %}" href="{% url 'catalog:contacts' %}">
+            📞 Контакты
+        </a>
+    </li>
+</ul>
